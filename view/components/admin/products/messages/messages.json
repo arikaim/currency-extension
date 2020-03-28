@@ -1,0 +1,19 @@
+{
+    "update": "Product was saved successfully",
+    "price": {
+        "update": "Product price was saved successfully"
+    },
+    "add": "Product was created successfully",
+    "delete": "Product was deleted successfully",
+    "restore": "Product was restored successfully",
+    "errors": {
+        "price": {
+            "update": "Can't save product price"
+        },
+        "update": "Can't save product",
+        "add": "Can't create product",
+        "exist": "Product with this title exist",
+        "restore": "Can't restore product",
+        "delete": "Can't delete product"
+    }
+}

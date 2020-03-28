@@ -1,0 +1,26 @@
+{% component 'components:tabs.vertical.content' %}
+{% set class = 'sixteen wide column' %}
+<div class="ui stackable text menu">
+    <div class="item right floated">       
+        {{ component('components:paginator.dropdown',{ namespace: 'currency' }) }}
+    </div>
+</div>
+<table class="ui compact stackable borderless basic table mt-2">
+    <thead>
+        <tr class="table-head">                          
+            <th class="collapsing two wide">{{ columns.action }}</th>
+            <th class="collapsing one wide">{{ columns.code }}</th>
+            <th class="collapsing one wide">{{ columns.sign }}</th>
+            <th class="collapsing one wide">{{ columns.icon }}</th>      
+            <th class="ten wide">{{ columns.title }}</th>    
+            <th class="collapsing one wide"></th>             
+        </tr>
+    </thead>
+    <tbody id="items_list" component="products::admin.currency.view.rows" namespace="currency">
+        {{ component('products::admin.currency.view.rows') }}   
+    </tbody>  
+</table>
+<div class="mt-2">
+    {{ component('components:paginator',{ namespace: 'currency' }) }}
+</div>
+{% endcomponent %}

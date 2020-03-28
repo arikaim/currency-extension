@@ -1,0 +1,10 @@
+{
+    "labels": {
+        "empty": "No products",
+        "free": "Free",
+        "status": {
+            "active": "active",
+            "disabled": "disabled"
+        }                    
+    }
+}

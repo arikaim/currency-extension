@@ -1,0 +1,17 @@
+{    
+    "fields": {
+        "type": {
+            "label": "Type"
+        },
+        "title": {
+            "label": "Title",
+            "placeholder": "Enter product title"
+        },
+        "slug": {
+            "label": "Slug"
+        },
+        "category": {
+            "label": "Category"
+        }
+    }
+}

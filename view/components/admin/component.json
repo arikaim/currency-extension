@@ -1,0 +1,11 @@
+{
+    "include": {
+        "js": [
+            "components:search"
+        ]
+    },
+    "access": {
+        "auth": "session",
+        "permission": "ControlPanel:full"           
+    }
+}

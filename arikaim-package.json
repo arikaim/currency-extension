@@ -1,0 +1,19 @@
+{
+    "title": "Currency",
+    "name": "currency",
+    "package-type": "extension",
+    "type": "user",
+    "description": "Manage currencies",
+    "short-description": "Currencies",
+    "version": "1.0.0",    
+    "repository": "https://github.com/arikaim/currency-extension.git",
+    "position": "5",
+    "admin-menu": {       
+        "title": "Currency",
+        "page-title": "Currency",
+        "icon": "money bill alternate outline",
+        "page-icon": "money bill alternate outline",              
+        "component": "currency::admin"        
+    }
+}
+

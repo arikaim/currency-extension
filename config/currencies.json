@@ -1,0 +1,33 @@
+[
+    {
+        "code": "USD",
+        "title": "US Dollar",
+        "icon": "dollar sign",
+        "sign": "$",
+        "default": 1
+    },
+    {
+        "code": "GBP",
+        "title": "British Pound",
+        "icon": "pound sign",
+        "sign": "£"        
+    },
+    {
+        "code": "EUR",
+        "title": "Euro",
+        "icon": "euro sign",
+        "sign": "€"        
+    },
+    {
+        "code": "CAD",
+        "title": "Canadian Dollar",
+        "icon": null,
+        "sign": "CA$"        
+    },
+    {
+        "code": "JPY",
+        "title": "Japanese Yen",
+        "icon": "yen sign",
+        "sign": "¥"        
+    }
+]

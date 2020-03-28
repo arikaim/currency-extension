@@ -1,0 +1,30 @@
+{% component 'components:view.rows' %}
+    {% set currency = createModel('Currency','products').orderBy('title') %}
+    {% set items = paginate(currency,'currency') %}
+   
+    {% for item in items.getItems() %}
+    <tr id="{{ item.uuid }}">        
+        <td>
+            <button class="ui icon mini basic button edit-currency">
+                <i class="icon edit "></i>
+            </button>
+            <button class="ui icon basic mini button delete-currency">
+                <i class="icon trash orange"></i>
+            </button>
+        </td>
+        <td>{{ item.code }}</td>
+        <td>{{ item.sign }}</td>
+        <td>
+            {% if item.icon is not empty %}
+            <i class="icon {{ item.icon }}"></i>
+            {% endif %}
+        </td>
+        <td>{{ item.title }}</td>    
+        <td class="right aligned">
+            {% if item.default == 1 %}
+            <div class="ui basic blue label">{{ labels.current }}</div>
+            {% endif %}
+        </td>    
+    </tr>
+    {% endfor %}
+{% endcomponent %}

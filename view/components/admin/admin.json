@@ -1,0 +1,14 @@
+{
+    "labels": {       
+        "currency": {
+            "content": "Currency",
+            "title": "Currency"
+        }            
+    },
+    "messages": {
+        "remove": {
+            "title": "Confirm Remove",
+            "content": "Confirm remove currency '<b><% title %></b>'"
+        }
+    }
+}

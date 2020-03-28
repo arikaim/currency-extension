@@ -1,0 +1,6 @@
+{% for price in product.price %}
+<div class="ui label basic horizontal">
+    {{ price.currency.sign }}
+    {{ price.price|numberFormat }}
+</div>
+{% endfor %}

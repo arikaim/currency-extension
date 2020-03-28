@@ -1,0 +1,13 @@
+{% component 'components:tabs.vertical.content' %}
+{% set class = 'sixteen wide column' %}
+{% set panel_class = '' %}
+<div class="ui segment padded">
+    <span class="text-bold mr-2">{{ labels.product }}</span>
+    {{ component('products::product.dropdown',{ selected: uuid }) }}
+</div>
+<div id="edit_product_tab">
+    {% if uuid is not null %}
+    {{ component('products::admin.products.edit.tab',{ uuid: uuid }) }}
+    {% endif %}
+</div>
+{% endcomponent %}

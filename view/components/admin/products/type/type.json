@@ -1,0 +1,11 @@
+{
+    "title": {
+        "content": "Product Type",
+        "icon": "list"      
+    },
+    "labels": {
+        "view": "View",
+        "add": "Add",
+        "edit": "Edit"                
+    }
+}

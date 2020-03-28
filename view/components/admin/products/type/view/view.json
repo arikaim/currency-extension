@@ -1,0 +1,10 @@
+{
+    "title": {
+        "content": "View",
+        "icon": "list"      
+    },
+    "columns": {
+        "action": "Action",
+        "title": "Title"      
+    }
+}

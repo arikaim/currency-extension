@@ -1,0 +1,18 @@
+{% set items = [ 
+    { title: labels.view, component: 'products::admin.products.view', icon: 'list', active: true },
+    { title: labels.add, component: 'products::admin.products.add', icon: 'plus' },
+    { id: 'edit_product', title: labels.edit, component: 'products::admin.products.edit', icon: 'edit' },
+    { title: labels.type, component: 'products::admin.products.type', icon: 'edit' }
+] %}
+
+{{  component('components:tabs.vertical',{ 
+        items: items, 
+        menu: { id: 'products_menu' }, 
+        item_class: 'product-tab-item',
+        content: { 
+            id: 'products_content',
+            component: 'products::admin.products.view',
+            params: params 
+        } 
+    })
+}}

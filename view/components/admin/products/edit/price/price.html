@@ -1,0 +1,34 @@
+{% component 'components:tabs.vertical.content' %}
+{% set product = createModel('Products','products').findById(uuid) %}
+{% set priceList = createModel('ProductOptionsList','products').getItemsQuery(product.type.slug,'price') %}
+{% if product.price.count() != priceList.count() %}
+<div class="ui icon mini message">
+    <i class="icon warning mini"></i>
+    <div class="content">
+        <h4>{{ messages.price }}</h4>
+        <div class="ui button mini primary add-price-list" uuid="{{ product.uuid }}">
+            <i class="icon plus"></i>
+            {{ buttons.add }} 
+        </div>
+    </div>   
+</div>
+{% endif %}
+{% if product.price.count() > 0 %}
+    <form class="ui form" id="price_form">       
+        <input type="hidden" value="{{ uuid }}" name="uuid">
+        {% for price in product.price %}              
+            {% set field_name = 'price[' ~ price.key ~ ']' %}
+            {{  component('components:form.fields.price',{ 
+                    label: price.type.title,
+                    value: price.price,
+                    icon: price.currency.icon,
+                    name: field_name,
+                    id: price.key
+                }) 
+            }}        
+            {{ component('system:admin.orm.options.form.fields.type',{ option: price }) }} 
+        {% endfor %}
+        {{ component('components:form.footer') }}
+    </form>
+{% endif %}
+{% endcomponent %}

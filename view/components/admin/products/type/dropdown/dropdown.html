@@ -1,0 +1,27 @@
+{% set show_label = (show_label is null) ? true : show_label %}
+{% set name = name|default('product_type') %}
+{% set id = id|default(name) %}
+{% set model = createModel('ProductType','products') %}
+{% set class = class|default('basic button') %}
+{% set data_column = data_column|default('id') %}
+{% if selected is not empty %}
+    {% set selected = model.findById(selected) %}
+{% endif %}
+{% set label = (selected is empty) ? labels.choose : selected.title %}
+
+<div class="ui dropdown product-type {{ class }}" {{ title|attr('title') }} {{ attributes|attr }}>
+    <input type="hidden" value="{{ selected[data_column] }}" name="{{ name }}" {{ id|attr('id') }}>  
+    {% if show_label == true %}
+        <div class="text default">
+           {{ label }}
+        </div>  
+    {% endif %}
+    <i class="icon dropdown"></i>
+    <div class="menu">
+        {% for item in model.get() %}
+        <div class="item" data-value="{{ item[data_column] }}">                    
+            {{ item.title }}            
+        </div>   
+        {% endfor %}         
+    </div>
+</div>

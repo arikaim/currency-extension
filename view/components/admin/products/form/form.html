@@ -1,0 +1,38 @@
+{% set currency = createModel('Currency','products').getDefault() %}
+{% if uuid is not empty %}
+    {% set product = createModel('Products','products').findById(uuid) %}
+{% endif %}
+<form class="ui form" id="product_form">  
+    <input type="hidden" name="uuid" id="uuid" value="{{ uuid }}">        
+    <div class="field">
+        <label>{{ fields.title.label }}</label>
+        <input type="text" name="title" id="title" {{ fields.title.placeholder|attr('placeholder') }} value="{{ product.title }}"> 
+    </div>       
+    {{  component('components:form.fields.slug',{ 
+            slug_source: 'title',
+            label: fields.slug.label,
+            show_url: false,
+            field_class: 'basic large label' 
+        }) 
+    }}   
+    {% if product is not empty %}
+    <div class="field">
+        <label>{{ fields.category.label }}</label>
+        {% set category = createModel('Category','category').getList(null,'product') %}
+        {{  component('system:admin.orm.relations.fields.dropdown',{ 
+                model: 'CategoryRelations',
+                extension: 'category',
+                type: 'product',
+                relation_id: product.id,
+                items: category,
+                class: 'fluid'
+            }) 
+        }}   
+    </div>
+    {% endif %}
+    <div class="field">
+        <label>{{ fields.type.label }}</label>
+        {{ component('products::admin.products.type.dropdown',{ selected: product.type_id, class: 'basic button fluid' }) }}
+    </div>    
+    {{ component('components:form.footer') }}
+</form>

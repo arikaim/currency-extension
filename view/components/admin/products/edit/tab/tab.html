@@ -1,0 +1,14 @@
+<div class="ui stackable tabular menu product-edit-tabs">      
+    <div class="item link active edit-product-tab-item" component="products::admin.products.edit.details" uuid="{{ uuid }}">
+        {{ labels.details }}     
+    </div>  
+    <div class="item link edit-product-tab-item" component="products::admin.products.edit.options" uuid="{{ uuid }}">
+        {{ labels.options }}     
+    </div>  
+    <div class="item link edit-product-tab-item" component="products::admin.products.edit.price" uuid="{{ uuid }}">
+        {{ labels.price }}     
+    </div>  
+</div>
+<div class="ui active tab basic segment" id="product_edit_content">    
+    {{ component('products::admin.products.edit.details',{ uuid: uuid }) }}
+</div> 
