@@ -1,9 +1,0 @@
-{
-    "labels": {
-        "empty": "..",
-        "status": {
-            "active": "active",
-            "disabled": "disabled"
-        }                    
-    }
-}

@@ -1,19 +1,4 @@
-/**
- *  Arikaim  
- *  @copyright  Copyright (c) Konstantin Atanasov <info@arikaim.com>
- *  @license    http://www.arikaim.com/license
- *  http://www.arikaim.com
- */
-
-function CurrencyControlPanel() {
-
-    this.init = function() {
-        arikaim.ui.tab();
-    };
-}
-
-var currencyControlPanel = new CurrencyControlPanel();
-
-arikaim.page.onReady(function() {
-    currencyControlPanel.init();
+$(document).ready(function() {  
+    arikaim.ui.tab();
+    //   arikaim.ui.tab('.currency-tab-item','currency_content');
 });
