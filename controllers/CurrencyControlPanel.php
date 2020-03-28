@@ -20,21 +20,74 @@ use Arikaim\Core\Arikaim;
 class CurrencyControlPanel extends ApiController
 {
 
+    /**
+     * Add currency
+     *
+     * @param \Psr\Http\Message\ServerRequestInterface $request
+     * @param \Psr\Http\Message\ResponseInterface $response
+     * @param Validator $data
+     * @return Psr\Http\Message\ResponseInterface
+    */
     public function addController($request, $response, $data) 
     {       
         $this->requireControlPanelPermission();
         
+        $this->onDataValid(function($data) {
+            
+            $this->setResponse($result,function() use($uuid) {            
+                $this
+                    ->message('delete')
+                    ->field('uuid',$uuid);  
+            },'errors.delete');
+        }); 
+        $data->validate();
+
     }
 
+    /**
+     * Update currency
+     *
+     * @param \Psr\Http\Message\ServerRequestInterface $request
+     * @param \Psr\Http\Message\ResponseInterface $response
+     * @param Validator $data
+     * @return Psr\Http\Message\ResponseInterface
+    */
     public function updateController($request, $response, $data) 
     {       
         $this->requireControlPanelPermission();
         
+        $this->onDataValid(function($data) {
+            
+            $this->setResponse($result,function() use($uuid) {            
+                $this
+                    ->message('delete')
+                    ->field('uuid',$uuid);  
+            },'errors.delete');
+        }); 
+        $data->validate();
+
     }
 
+    /**
+     * Delete currency
+     *
+     * @param \Psr\Http\Message\ServerRequestInterface $request
+     * @param \Psr\Http\Message\ResponseInterface $response
+     * @param Validator $data
+     * @return Psr\Http\Message\ResponseInterface
+    */
     public function deleteController($request, $response, $data) 
     {       
         $this->requireControlPanelPermission();
         
+        $this->onDataValid(function($data) {
+            
+            $this->setResponse($result,function() use($uuid) {            
+                $this
+                    ->message('delete')
+                    ->field('uuid',$uuid);  
+            },'errors.delete');
+        }); 
+        $data->validate();
     }
 }
