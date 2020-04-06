@@ -34,6 +34,9 @@ class CurrencyControlPanel extends ApiController
         
         $this->onDataValid(function($data) {
             
+            $currency = Model::Currency('currency');
+            $result = $currency->create($data);
+
             $this->setResponse($result,function() use($uuid) {            
                 $this
                     ->message('delete')

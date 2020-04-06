@@ -4,6 +4,7 @@
  *  @license    http://www.arikaim.com/license
  *  http://www.arikaim.com
  */
+'use strict';
 
 function CurrencyControlPanel() {
 
@@ -19,7 +20,13 @@ function CurrencyControlPanel() {
 
     };
 
-    
+    this.init = function() {
+        arikaim.ui.tab('.currency-tab-item','currency_content');
+    }
 }
 
 var currency = new CurrencyControlPanel();
+
+$(document).ready(function() {  
+    currency.init();
+});

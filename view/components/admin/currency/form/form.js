@@ -1,17 +1,14 @@
+'use strict';
 
 $(document).ready(function() {
-    $('.product-type').dropdown({});
+    $('.select-currency').dropdown({});
 
-    arikaim.ui.form.addRules("#product_form",{
+    arikaim.ui.form.addRules("#currency_form",{
         inline: false,
         fields: {
             title: {
                 rules: [{ type:'minLength[2]' }]
-            },
-            type: { 
-                identifier: "product_type",      
-                rules: [{ type:'empty' }]
-            }    
+            }           
         }
     });
 });

@@ -1,11 +1,11 @@
 {% set items = [  
-    { id: 'currency_button', title: labels.currency.content, component: 'products::admin.currency', icon: 'money bill alternate outline', active: true },
-    { id: 'settings_button', title: labels.settings.content, component: 'products::admin.settings', icon: 'cogs' }
+    { id: 'currency_button', title: labels.currency.content, component: 'currency::admin.currency', icon: 'money bill alternate outline', active: true },
+    { id: 'settings_button', title: labels.settings.content, component: 'currency::admin.settings', icon: 'cogs' }
 ] %}
 
 {{  component('components:tabs',{ 
         items: items,
         menu: { component: 'system:admin.extensions.menu.actions', extension: 'blog' },
-        content: { component: 'products::admin.currency' } 
+        content: { component: 'currency::admin.currency' } 
     })
 }}

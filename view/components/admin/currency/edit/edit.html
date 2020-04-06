@@ -1,4 +1,8 @@
 {% component 'components:tabs.vertical.content' %}
-    <div class="mt-4"></div>
-    {{ component('products::admin.currency.form') }}  
+    <div class="ui segment mt-4">
+
+    </div>
+    <div class="mt-1">
+        {{ component('currency::admin.currency.form',{ uuid: uuid }) }}  
+    </div>   
 {% endcomponent %}
