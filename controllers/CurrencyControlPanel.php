@@ -11,14 +11,25 @@ namespace Arikaim\Extensions\Currency\Controllers;
 
 use Arikaim\Core\Db\Model;
 use Arikaim\Core\Controllers\ApiController;
-use Arikaim\Core\Arikaim;
 
+use Arikaim\Core\Controllers\Traits\Status;
 
 /**
  * Store currency control panel api controler
 */
 class CurrencyControlPanel extends ApiController
 {
+    use Status;
+
+    /**
+     * Init controller
+     *
+     * @return void
+     */
+    public function init()
+    {
+        $this->loadMessages('currency::admin.messages');
+    }
 
     /**
      * Add currency
@@ -35,16 +46,15 @@ class CurrencyControlPanel extends ApiController
         $this->onDataValid(function($data) {
             
             $currency = Model::Currency('currency');
-            $result = $currency->create($data);
+            $newModel = $currency->create($data->toArray());
 
-            $this->setResponse($result,function() use($uuid) {            
+            $this->setResponse(is_object($newModel),function() use($newModel) {            
                 $this
-                    ->message('delete')
-                    ->field('uuid',$uuid);  
-            },'errors.delete');
+                    ->message('add')
+                    ->field('uuid',$newModel->uuid);  
+            },'errors.add');
         }); 
         $data->validate();
-
     }
 
     /**
@@ -60,12 +70,14 @@ class CurrencyControlPanel extends ApiController
         $this->requireControlPanelPermission();
         
         $this->onDataValid(function($data) {
-            
-            $this->setResponse($result,function() use($uuid) {            
+            $currency = Model::Currency('currency')->findById($data['uuid']);
+            $result = $currency->update($data->toArray());
+
+            $this->setResponse($result,function() use($currency) {            
                 $this
-                    ->message('delete')
-                    ->field('uuid',$uuid);  
-            },'errors.delete');
+                    ->message('update')
+                    ->field('uuid',$currency->uuid);  
+            },'errors.update');
         }); 
         $data->validate();
 
@@ -84,11 +96,13 @@ class CurrencyControlPanel extends ApiController
         $this->requireControlPanelPermission();
         
         $this->onDataValid(function($data) {
-            
-            $this->setResponse($result,function() use($uuid) {            
+            $currency = Model::Currency('currency')->findById($data['uuid']);
+            $result = $currency->delete();
+
+            $this->setResponse($result,function() use($currency) {            
                 $this
                     ->message('delete')
-                    ->field('uuid',$uuid);  
+                    ->field('uuid',$currency->uuid);  
             },'errors.delete');
         }); 
         $data->validate();

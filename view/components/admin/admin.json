@@ -1,8 +1,8 @@
 {
     "labels": {       
-        "currency": {
-            "content": "Currency",
-            "title": "Currency"
+        "view": {
+            "content": "View",
+            "title": "View"
         }            
     },
     "messages": {

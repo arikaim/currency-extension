@@ -1,16 +1,19 @@
 {% component 'components:view.rows' %}
-    {% set currency = createModel('Currency','products').orderBy('title') %}
+    {% set currency = createModel('Currency','currency').orderBy('title') %}
     {% set items = paginate(currency,'currency') %}
    
     {% for item in items.getItems() %}
     <tr id="{{ item.uuid }}">        
         <td>
-            <button class="ui icon mini basic button edit-currency">
+            <button class="ui icon mini basic button edit-currency" uuid="{{ item.uuid }}">
                 <i class="icon edit "></i>
             </button>
-            <button class="ui icon basic mini button delete-currency">
+            <button class="ui icon basic mini button delete-currency" uuid="{{ item.uuid }}" title="{{ item.title }}">
                 <i class="icon trash orange"></i>
             </button>
+            {% if item.default == 1 %}
+            <div class="ui basic blue label">{{ labels.default }}</div>
+            {% endif %}
         </td>
         <td>{{ item.code }}</td>
         <td>{{ item.sign }}</td>
@@ -19,12 +22,7 @@
             <i class="icon {{ item.icon }}"></i>
             {% endif %}
         </td>
-        <td>{{ item.title }}</td>    
-        <td class="right aligned">
-            {% if item.default == 1 %}
-            <div class="ui basic blue label">{{ labels.current }}</div>
-            {% endif %}
-        </td>    
+        <td>{{ item.title }}</td>            
     </tr>
     {% endfor %}
 {% endcomponent %}

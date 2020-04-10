@@ -1,3 +1,5 @@
+'use strict';
+
 $(document).ready(function() {
     safeCall('currencyView',function(obj) {
         obj.initRows();

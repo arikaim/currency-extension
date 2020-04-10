@@ -8,16 +8,25 @@
 
 function CurrencyControlPanel() {
 
-    this.delete = function() {
-
+    this.delete = function(uuid, onSuccess, onError) {
+        return arikaim.put('/api/currency/admin/delete/' + uuid,onSuccess,onError);      
     };
 
-    this.add = function() {
-
+    this.add = function(formId, onSuccess, onError) {
+        return arikaim.post('/api/currency/admin/add',formId,onSuccess,onError); 
     };
 
-    this.update = function() {
+    this.update = function(formId, onSuccess, onError) {
+        return arikaim.put('/api/currency/admin/update',formId,onSuccess,onError); 
+    };
 
+    this.setStatus = function(uuid, status ,onSuccess, onError) {           
+        var data = { 
+            uuid: uuid, 
+            status: status 
+        };
+
+        return arikaim.put('/api/currency/admin/status',data,onSuccess,onError);      
     };
 
     this.init = function() {

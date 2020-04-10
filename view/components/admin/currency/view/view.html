@@ -12,12 +12,11 @@
             <th class="collapsing one wide">{{ columns.code }}</th>
             <th class="collapsing one wide">{{ columns.sign }}</th>
             <th class="collapsing one wide">{{ columns.icon }}</th>      
-            <th class="ten wide">{{ columns.title }}</th>    
-            <th class="collapsing one wide"></th>             
+            <th class="ten wide">{{ columns.title }}</th>               
         </tr>
     </thead>
-    <tbody id="items_list" component="products::admin.currency.view.rows" namespace="currency">
-        {{ component('products::admin.currency.view.rows') }}   
+    <tbody id="items_list" component="currency::admin.currency.view.rows" namespace="currency">
+        {{ component('currency::admin.currency.view.rows') }}   
     </tbody>  
 </table>
 <div class="mt-2">
