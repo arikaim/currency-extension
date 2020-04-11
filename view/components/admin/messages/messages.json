@@ -1,0 +1,10 @@
+{
+    "add": "Currency was added successfully.",
+    "update": "Currency was saved successfully.",
+    "delete": "Currency was deleted successfully.",   
+    "errors": {
+        "add": "Can't create currency.",
+        "update": "Can't update currency.",
+        "delete": "Can't delete currency"        
+    }
+}

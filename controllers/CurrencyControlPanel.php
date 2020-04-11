@@ -32,6 +32,18 @@ class CurrencyControlPanel extends ApiController
     }
 
     /**
+     * Constructor
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->setExtensionName('currency');
+        $this->setModelClass('Currency');
+    }
+
+    /**
      * Add currency
      *
      * @param \Psr\Http\Message\ServerRequestInterface $request

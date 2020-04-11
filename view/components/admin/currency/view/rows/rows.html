@@ -12,8 +12,11 @@
                 <i class="icon trash orange"></i>
             </button>
             {% if item.default == 1 %}
-            <div class="ui basic blue label">{{ labels.default }}</div>
-            {% endif %}
+                <div class="ui basic blue label">{{ labels.default }}</div>
+            {% endif %}                   
+        </td>
+        <td>
+            {{ component('components:status.dropdown',{ status: item.status, uuid: item.uuid, skip: [2,3,4,5] }) }} 
         </td>
         <td>{{ item.code }}</td>
         <td>{{ item.sign }}</td>

@@ -5,6 +5,7 @@
     },
     "columns": {
         "action": "Action",
+        "status": "Status",
         "edit": "Edit",
         "title": "Title",
         "icon": "Icon",
