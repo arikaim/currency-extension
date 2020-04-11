@@ -9,7 +9,7 @@
 function CurrencyControlPanel() {
 
     this.delete = function(uuid, onSuccess, onError) {
-        return arikaim.put('/api/currency/admin/delete/' + uuid,onSuccess,onError);      
+        return arikaim.delete('/api/currency/admin/delete/' + uuid,onSuccess,onError);      
     };
 
     this.add = function(formId, onSuccess, onError) {

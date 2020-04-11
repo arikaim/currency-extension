@@ -36,9 +36,9 @@ class CurrencyControlPanel extends ApiController
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($container)
     {
-        parent::__construct();
+        parent::__construct($container);
         $this->setExtensionName('currency');
         $this->setModelClass('Currency');
     }

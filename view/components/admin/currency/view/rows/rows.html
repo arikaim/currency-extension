@@ -8,7 +8,7 @@
             <button class="ui icon mini basic button edit-currency" uuid="{{ item.uuid }}">
                 <i class="icon edit "></i>
             </button>
-            <button class="ui icon basic mini button delete-currency" uuid="{{ item.uuid }}" title="{{ item.title }}">
+            <button class="ui icon basic mini button delete-currency" uuid="{{ item.uuid }}" data-title="{{ item.title }}">
                 <i class="icon trash orange"></i>
             </button>
             {% if item.default == 1 %}

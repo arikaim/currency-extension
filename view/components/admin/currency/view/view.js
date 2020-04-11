@@ -9,6 +9,9 @@
 function CurrencyView() {
 
     this.initRows = function() {
+        var component = arikaim.component.get('currency::admin');
+        var removeMessage = component.getProperty('messages.remove.content');
+
         arikaim.ui.button('.edit-currency',function(element) {
             var uuid = $(element).attr('uuid');
 
@@ -18,9 +21,13 @@ function CurrencyView() {
                 params: { uuid: uuid }
             }); 
         });
-
-        var component = arikaim.component.get('currency::admin');
-        var removeMessage = component.getProperty('messages.remove.content');
+       
+        $('.status-dropdown').dropdown({
+            onChange: function(value) {
+                var uuid = $(this).attr('uuid');
+                currency.setStatus(uuid,value);               
+            }
+        });
 
         arikaim.ui.button('.delete-currency',function(element) {
             var uuid = $(element).attr('uuid');
@@ -31,7 +38,7 @@ function CurrencyView() {
                 title: component.getProperty('messages.remove.title'),
                 description: message
             },function() {
-                tags.delete(uuid,function(result) {
+                currency.delete(uuid,function(result) {
                     $('#' + uuid).remove();                
                 });
             });
