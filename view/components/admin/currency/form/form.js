@@ -6,6 +6,9 @@ $(document).ready(function() {
         fields: {
             title: {
                 rules: [{ type:'minLength[2]' }]
+            },
+            code: {
+                rules: [{ type:'minLength[2]' }]
             }           
         }
     });

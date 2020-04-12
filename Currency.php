@@ -28,8 +28,9 @@ class Currency extends Extension
         $this->addApiRoute('PUT','/api/currency/admin/update','CurrencyControlPanel','update','session');   
         $this->addApiRoute('PUT','/api/currency/admin/status','CurrencyControlPanel','setStatus','session');   
         $this->addApiRoute('DELETE','/api/currency/admin/delete/{uuid}','CurrencyControlPanel','delete','session');  
+        $this->addApiRoute('PUT','/api/currency/admin/default','CurrencyControlPanel','setDefault','session');   
         // Api      
-        $this->addApiRoute('GET','/api/currency/list/dropdown/[{query}]','ProductsApi','getDropdownList');   
+        $this->addApiRoute('GET','/api/currency/list/[{query}]','CurrencyApi','getDropdownList');   
         // Create db tables        
         $this->createDbTable('CurrencySchema');
     }   

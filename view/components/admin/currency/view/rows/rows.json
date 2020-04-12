@@ -10,6 +10,7 @@
         }
     },
     "labels": {
-        "default": "Default"
+        "default": "Default",
+        "set": "Set default"
     }  
 }

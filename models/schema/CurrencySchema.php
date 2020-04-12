@@ -10,6 +10,7 @@
 namespace Arikaim\Extensions\Currency\Models\Schema;
 
 use Arikaim\Core\Db\Schema;
+use Arikaim\Core\Extension\Extension;
 use Arikaim\Core\Utils\Uuid;
 
 /**
@@ -64,28 +65,13 @@ class CurrencySchema extends Schema
      */
     public function seeds($seed)
     {     
-        $seed->create(['code' => 'USD'],
-            [
-                'uuid'    => Uuid::create(),
-                'code'    => 'USD',
-                'title'   => 'US Dollar',
-                'icon'    => 'dollar sign',
-                'sign'    => '$',
-                'default' => 1,             
-                'status'  => 1
-            ]
-        ); 
-      
-        $seed->create(['code' => 'GBP'],
-            [
-                'uuid'    => Uuid::create(),
-                'code'    => 'GBP',
-                'title'   => 'British Pound',
-                'icon'    => 'pound sign',
-                'sign'    => '£',
-                'default' => null,  
-                'status'  => 1
-            ]
-        );              
+        $items = Extension::loadJsonConfigFile('currencies.json','currency');
+
+        $seed->createFromArray(['code'],$items,function($item) {
+            $item['uuid'] = Uuid::create();
+            $item['default'] = (isset($item['default']) == true) ? $item['default'] : null;
+        
+            return $item;
+        });
     }
 }

@@ -20,7 +20,15 @@ function CurrencyControlPanel() {
         return arikaim.put('/api/currency/admin/update',formId,onSuccess,onError); 
     };
 
-    this.setStatus = function(uuid, status ,onSuccess, onError) {           
+    this.setDefault = function(uuid, onSuccess, onError) {           
+        var data = { 
+            uuid: uuid            
+        };
+
+        return arikaim.put('/api/currency/admin/default',data,onSuccess,onError);      
+    };
+
+    this.setStatus = function(uuid, status, onSuccess, onError) {           
         var data = { 
             uuid: uuid, 
             status: status 

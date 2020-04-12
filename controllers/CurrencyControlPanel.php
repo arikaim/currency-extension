@@ -58,6 +58,12 @@ class CurrencyControlPanel extends ApiController
         $this->onDataValid(function($data) {
             
             $currency = Model::Currency('currency');
+            $model = $currency->findByColumn($data['code'],'code');
+            if (is_object($model) == true) {
+                $this->error('errors.exist');
+                return;
+            }
+
             $newModel = $currency->create($data->toArray());
 
             $this->setResponse(is_object($newModel),function() use($newModel) {            
@@ -67,6 +73,7 @@ class CurrencyControlPanel extends ApiController
             },'errors.add');
         }); 
         $data->validate();
+
     }
 
     /**
@@ -82,7 +89,15 @@ class CurrencyControlPanel extends ApiController
         $this->requireControlPanelPermission();
         
         $this->onDataValid(function($data) {
-            $currency = Model::Currency('currency')->findById($data['uuid']);
+            $currency = Model::Currency('currency');
+
+            $model = $currency->where('code','=',$data['code'])->where('uuid','<>',$data['uuid'])->first();
+            if (is_object($model) == true) {
+                $this->error('errors.exist');
+                return;
+            }
+
+            $currency = $currency->findById($data['uuid']);
             $result = $currency->update($data->toArray());
 
             $this->setResponse($result,function() use($currency) {            

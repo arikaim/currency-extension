@@ -21,7 +21,17 @@ function CurrencyView() {
                 params: { uuid: uuid }
             }); 
         });
-       
+        
+        arikaim.ui.button('.default-currency',function(element) {
+            var uuid = $(element).attr('uuid');
+            currency.setDefault(uuid,function(result) {
+                arikaim.page.loadContent({
+                    id: 'items_list',           
+                    component: 'currency::admin.currency.view.rows'
+                }); 
+            });            
+        });
+
         $('.status-dropdown').dropdown({
             onChange: function(value) {
                 var uuid = $(this).attr('uuid');

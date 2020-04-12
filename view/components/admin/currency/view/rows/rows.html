@@ -1,5 +1,5 @@
 {% component 'components:view.rows' %}
-    {% set currency = createModel('Currency','currency').orderBy('title') %}
+    {% set currency = createModel('Currency','currency').orderBy('default','desc').orderBy('title') %}
     {% set items = paginate(currency,'currency') %}
    
     {% for item in items.getItems() %}
@@ -12,7 +12,11 @@
                 <i class="icon trash orange"></i>
             </button>
             {% if item.default == 1 %}
-                <div class="ui basic blue label">{{ labels.default }}</div>
+                <div class="ui basic blue label default-label">{{ labels.default }}</div>
+            {% else %}
+                <button class="ui icon basic mini button default-currency" uuid="{{ item.uuid }}" title="{{ labels.set }}">
+                    <i class="icon check"></i>
+                </button>
             {% endif %}                   
         </td>
         <td>
