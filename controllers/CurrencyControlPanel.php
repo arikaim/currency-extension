@@ -34,9 +34,9 @@ class CurrencyControlPanel extends ApiController
     /**
      * Constructor
      *
-     * @return void
+     * @param Container|null $container
      */
-    public function __construct($container)
+    public function __construct($container = null)
     {
         parent::__construct($container);
         $this->setExtensionName('currency');
@@ -59,14 +59,14 @@ class CurrencyControlPanel extends ApiController
             
             $currency = Model::Currency('currency');
             $model = $currency->findByColumn($data['code'],'code');
-            if (is_object($model) == true) {
+            if (\is_object($model) == true) {
                 $this->error('errors.exist');
                 return;
             }
 
             $newModel = $currency->create($data->toArray());
 
-            $this->setResponse(is_object($newModel),function() use($newModel) {            
+            $this->setResponse(\is_object($newModel),function() use($newModel) {            
                 $this
                     ->message('add')
                     ->field('uuid',$newModel->uuid);  
@@ -92,7 +92,7 @@ class CurrencyControlPanel extends ApiController
             $currency = Model::Currency('currency');
 
             $model = $currency->where('code','=',$data['code'])->where('uuid','<>',$data['uuid'])->first();
-            if (is_object($model) == true) {
+            if (\is_object($model) == true) {
                 $this->error('errors.exist');
                 return;
             }

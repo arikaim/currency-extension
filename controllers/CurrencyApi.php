@@ -47,7 +47,7 @@ class CurrencyApi extends ApiController
             $this->setResponse(is_object($model),function() use($model) {     
                 $items = [];
                 foreach ($model as $item) {
-                    $items[]= [
+                    $items[] = [
                         'name' => $item['code'],
                         'value' => $item['uuid']
                     ];
