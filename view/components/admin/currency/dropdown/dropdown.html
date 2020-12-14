@@ -1,6 +1,7 @@
 {% set id = id|default('currency_dropdown') %}
 {% set name = name|default('currency') %}
 {% set class = class|default('selection') %}
+{% set data_field = data_field|default('uuid') %}
 {% set model = createModel('Currency','currency') %}
 {% set items = model.orderBy('code').get() %}
 {% if selected is not empty %}
@@ -10,11 +11,11 @@
 <div class="ui search dropdown currency-dropdown {{ class }}" id="{{ id }}">
     <input name="{{ name }}" type="hidden">
     <i class="money bill alternate outline icon {{ icon }}"></i>
-    <div class="default text">{{ selectet_text }}</div>
+    <div class="text">{{ selectet_text }}</div>
     <i class="dropdown icon"></i>
     <div class="menu">
         {% for item in items %}
-            <div class="item" data-value="{{ item.uuid }} ">{{ item.title }}</div>
+            <div class="item" data-value="{{ item[data_field] }} ">{{ item.title }}</div>
         {% endfor %}
     </div>
 </div>

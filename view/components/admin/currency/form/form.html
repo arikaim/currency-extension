@@ -22,5 +22,9 @@
             <input type="text" name="sign" id="sign" {{ fields.sign.placeholder|attr('placeholder') }} value="{{ currency.sign }}"> 
         </div>              
     </div>    
+    <div class="field">
+        <label>{{ fields.crypto.label }}</label>
+        <input type="checkbox" name="crypto" id="crypto" value="1" {{ (currency.crypto == 1) ? 'checked': '' }} >        
+    </div>
     {{ component('components:form.footer') }}   
 </form>

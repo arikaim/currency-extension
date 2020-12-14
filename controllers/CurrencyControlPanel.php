@@ -10,14 +10,14 @@
 namespace Arikaim\Extensions\Currency\Controllers;
 
 use Arikaim\Core\Db\Model;
-use Arikaim\Core\Controllers\ApiController;
+use Arikaim\Core\Controllers\ControlPanelApiController;
 
 use Arikaim\Core\Controllers\Traits\Status;
 
 /**
- * Store currency control panel api controler
+ * Currency control panel api controler
 */
-class CurrencyControlPanel extends ApiController
+class CurrencyControlPanel extends ControlPanelApiController
 {
     use Status;
 
@@ -52,9 +52,7 @@ class CurrencyControlPanel extends ApiController
      * @return Psr\Http\Message\ResponseInterface
     */
     public function addController($request, $response, $data) 
-    {       
-        $this->requireControlPanelPermission();
-        
+    {        
         $this->onDataValid(function($data) {
             
             $currency = Model::Currency('currency');
@@ -85,12 +83,11 @@ class CurrencyControlPanel extends ApiController
      * @return Psr\Http\Message\ResponseInterface
     */
     public function updateController($request, $response, $data) 
-    {       
-        $this->requireControlPanelPermission();
-        
+    {        
         $this->onDataValid(function($data) {
             $currency = Model::Currency('currency');
-
+            $data['crypto'] = $data->get('crypto',0);
+            
             $model = $currency->where('code','=',$data['code'])->where('uuid','<>',$data['uuid'])->first();
             if (\is_object($model) == true) {
                 $this->error('errors.exist');
@@ -107,7 +104,6 @@ class CurrencyControlPanel extends ApiController
             },'errors.update');
         }); 
         $data->validate();
-
     }
 
     /**
@@ -119,9 +115,7 @@ class CurrencyControlPanel extends ApiController
      * @return Psr\Http\Message\ResponseInterface
     */
     public function deleteController($request, $response, $data) 
-    {       
-        $this->requireControlPanelPermission();
-        
+    {        
         $this->onDataValid(function($data) {
             $currency = Model::Currency('currency')->findById($data['uuid']);
             $result = $currency->delete();

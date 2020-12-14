@@ -44,7 +44,7 @@ class CurrencyApi extends ApiController
             $model = Model::Currency('currency');
             $model = $model->getActive()->where('title','like',"%$search%")->take($size)->get();
 
-            $this->setResponse(is_object($model),function() use($model) {     
+            $this->setResponse(\is_object($model),function() use($model) {     
                 $items = [];
                 foreach ($model as $item) {
                     $items[] = [

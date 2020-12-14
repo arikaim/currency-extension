@@ -42,7 +42,9 @@ class Currency extends Model
         'code',
         'icon',
         'status',
+        'default',
         'sign',
+        'crypto',
         'title'
     ];
     
@@ -52,4 +54,31 @@ class Currency extends Model
      * @var boolean
      */
     public $timestamps = false;
+
+    /**
+     * Get crypto query
+     *
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopeCryptoQuery($query)
+    {
+        return $query->where('crypto','=',1);
+    }
+
+    /**
+     * Find currency by uuid, id, code
+     *
+     * @param string|int $code
+     * @return Model|null
+     */
+    public function findCurrency($code)
+    {
+        $model = $this->findById($code);
+        if (\is_object($model) == true) {
+            return $model;
+        }
+
+        return $this->findByColumn($code,'code');
+    }
 }

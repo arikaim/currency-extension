@@ -6,7 +6,7 @@ $(document).ready(function() {
     
     $('.currency-dropdown').dropdown({
         onChange: function(value) {
-            console.log(value);
+           
             arikaim.page.loadContent({
                 id: 'edit_currency_content',           
                 component: 'currency::admin.currency.form',

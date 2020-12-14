@@ -11,6 +11,7 @@
     },
     "labels": {
         "default": "Default",
-        "set": "Set default"
+        "set": "Set default",
+        "crypto": "Crypto"
     }  
 }

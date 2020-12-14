@@ -42,9 +42,11 @@ class CurrencySchema extends Schema
         $table->string('sign',10)->nullable(true);
         $table->string('title')->nullable(true);
         $table->string('country_code',5)->nullable(true);
+        $table->integer('crypto')->nullable(true);
         $table->status();
         // index
         $table->unique(['code']);
+        $table->index('crypto');
     }
 
     /**
@@ -55,6 +57,9 @@ class CurrencySchema extends Schema
      */
     public function update($table) 
     {              
+        if ($this->hasColumn('crypto') == false) {
+            $table->integer('crypto')->nullable(true); 
+        }
     }
 
     /**

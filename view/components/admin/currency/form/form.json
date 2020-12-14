@@ -15,6 +15,10 @@
         "sign": {
             "label": "Sign",
             "placeholder": "Enter Sign"
+        },
+        "crypto": {
+            "label": "Crypto Currency",
+            "placeholder": ""
         }
     }
 }

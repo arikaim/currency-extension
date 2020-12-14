@@ -1,35 +1,38 @@
-{% component 'components:view.rows' %}
-    {% set currency = createModel('Currency','currency').orderBy('default','desc').orderBy('title') %}
-    {% set items = paginate(currency,'currency') %}
-   
-    {% for item in items.getItems() %}
-    <tr id="{{ item.uuid }}">        
-        <td>
-            <button class="ui icon mini basic button edit-currency" uuid="{{ item.uuid }}">
-                <i class="icon edit "></i>
+{% set currency = createModel('Currency','currency').orderBy('default','desc').orderBy('title') %}
+{% set items = paginate(currency,'currency') %}
+{% set items = items.getItems() %}
+{% for item in items %}
+<tr id="{{ item.uuid }}">        
+    <td>
+        <button class="ui icon mini basic button edit-currency" uuid="{{ item.uuid }}">
+            <i class="icon edit "></i>
+        </button>
+        <button class="ui icon basic mini button delete-currency" uuid="{{ item.uuid }}" data-title="{{ item.title }}">
+            <i class="icon trash orange"></i>
+        </button>    
+        {% if item.default == '1' %}
+            <div class="ui basic blue label default-label">{{ labels.default }}</div>
+        {% else %}
+            <button class="ui icon basic mini button default-currency" uuid="{{ item.uuid }}" title="{{ labels.set }}">
+                <i class="icon check"></i>
             </button>
-            <button class="ui icon basic mini button delete-currency" uuid="{{ item.uuid }}" data-title="{{ item.title }}">
-                <i class="icon trash orange"></i>
-            </button>
-            {% if item.default == 1 %}
-                <div class="ui basic blue label default-label">{{ labels.default }}</div>
-            {% else %}
-                <button class="ui icon basic mini button default-currency" uuid="{{ item.uuid }}" title="{{ labels.set }}">
-                    <i class="icon check"></i>
-                </button>
-            {% endif %}                   
-        </td>
-        <td>
-            {{ component('components:status.dropdown',{ status: item.status, uuid: item.uuid, skip: [2,3,4,5] }) }} 
-        </td>
-        <td>{{ item.code }}</td>
-        <td>{{ item.sign }}</td>
-        <td>
-            {% if item.icon is not empty %}
-            <i class="icon {{ item.icon }}"></i>
-            {% endif %}
-        </td>
-        <td>{{ item.title }}</td>            
-    </tr>
-    {% endfor %}
-{% endcomponent %}
+        {% endif %}                   
+    </td>
+    <td>
+        {{ component('components:status.dropdown',{ status: item.status, uuid: item.uuid, skip: [2,3,4,5] }) }} 
+    </td>
+    <td>{{ item.code }}</td>
+    <td>{{ item.sign }}</td>
+    <td>
+        {% if item.icon is not empty %}
+        <i class="icon {{ item.icon }}"></i>
+        {% endif %}
+    </td>
+    <td>
+        {% if item.crypto == 1 %}
+        <div class="ui horizontal basic blue mini label">{{ labels.crypto }}</div>
+        {% endif %}
+        {{ item.title }}      
+    </td>            
+</tr>
+{% endfor %}
