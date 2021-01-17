@@ -81,4 +81,17 @@ class Currency extends Model
 
         return $this->findByColumn($code,'code');
     }
+
+    /**
+     * Get currency id
+     *
+     * @param string|int $code
+     * @return integer|null
+    */
+    public function getCurrencyId($code): ?int
+    {
+        $model = $this->findCurrency($code);
+
+        return (\is_object($model) == true) ? $model->id : null;
+    }
 }

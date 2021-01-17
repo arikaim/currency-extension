@@ -19,11 +19,13 @@ trait CurrencyRelation
     /**
      * Currency relation
      *
-     * @return mixed
+     * @return Relation|Model
      */
     public function currency() 
     {
-        return $this->belongsTo(Currency::class,$this->getCurrencyIdAttributeName());       
+        return $this->belongsTo(Currency::class,'currency_id')->withDefault(function ($currency) {
+            return $currency->getDefault();
+        });
     }    
 
     /**
