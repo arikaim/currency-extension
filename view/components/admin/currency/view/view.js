@@ -7,7 +7,9 @@
 'use strict';
 
 function CurrencyView() {
-
+    var self = this;
+    this.messages = null;
+    
     this.initRows = function() {
         var component = arikaim.component.get('currency::admin');
         var removeMessage = component.getProperty('messages.remove.content');
@@ -69,4 +71,5 @@ var currencyView = new CurrencyView();
 
 $(document).ready(function() {
     currencyView.init();
+    currencyView.initRows();
 });
