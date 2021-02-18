@@ -1,6 +1,6 @@
 'use strict';
 
-$(document).ready(function() {  
+arikaim.component.onLoaded(function() { 
     arikaim.ui.form.onSubmit("#currency_form",function() {  
         return currency.add('#currency_form');
     },function(result) {

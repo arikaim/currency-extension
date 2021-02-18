@@ -44,6 +44,6 @@ function CurrencyControlPanel() {
 
 var currency = new CurrencyControlPanel();
 
-$(document).ready(function() {  
+arikaim.component.onLoaded(function() {
     currency.init();
 });
