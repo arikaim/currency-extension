@@ -30,7 +30,10 @@
     </td>
     <td>
         {% if item.crypto == 1 %}
-        <div class="ui horizontal basic blue mini label">{{ labels.crypto }}</div>
+            <div class="ui horizontal basic blue mini label">{{ labels.crypto }}</div>
+        {% endif %}
+        {% if item.private == 1 %}
+            <div class="ui horizontal basic orange mini label">{{ labels.private }}</div>
         {% endif %}
         {{ item.title }}      
     </td>            

@@ -19,6 +19,10 @@
         "crypto": {
             "label": "Crypto Currency",
             "placeholder": ""
+        },
+        "private": {
+            "label": "Private Currency",
+            "placeholder": ""
         }
     }
 }

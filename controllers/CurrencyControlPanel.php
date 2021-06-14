@@ -11,7 +11,6 @@ namespace Arikaim\Extensions\Currency\Controllers;
 
 use Arikaim\Core\Db\Model;
 use Arikaim\Core\Controllers\ControlPanelApiController;
-
 use Arikaim\Core\Controllers\Traits\Status;
 
 /**
@@ -70,8 +69,9 @@ class CurrencyControlPanel extends ControlPanelApiController
                     ->field('uuid',$newModel->uuid);  
             },'errors.add');
         }); 
-        $data->validate();
-
+        $data
+            ->addFilter('code','UpperCase')
+            ->filterAndValidate();
     }
 
     /**
@@ -87,7 +87,8 @@ class CurrencyControlPanel extends ControlPanelApiController
         $this->onDataValid(function($data) {
             $currency = Model::Currency('currency');
             $data['crypto'] = $data->get('crypto',0);
-            
+            $data['private'] = $data->get('private',0);
+
             $model = $currency->where('code','=',$data['code'])->where('uuid','<>',$data['uuid'])->first();
             if (\is_object($model) == true) {
                 $this->error('errors.exist');
@@ -103,7 +104,9 @@ class CurrencyControlPanel extends ControlPanelApiController
                     ->field('uuid',$currency->uuid);  
             },'errors.update');
         }); 
-        $data->validate();
+        $data
+            ->addFilter('code','UpperCase')
+            ->filterAndValidate();
     }
 
     /**

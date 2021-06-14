@@ -12,6 +12,7 @@
     "labels": {
         "default": "Default",
         "set": "Set default",
-        "crypto": "Crypto"
+        "crypto": "Crypto",
+        "private": "Private"
     }  
 }

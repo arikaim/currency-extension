@@ -37,12 +37,13 @@ class CurrencySchema extends Schema
         $table->id();
         $table->prototype('uuid');
         $table->prototype('defaultColumn');  
-        $table->string('code',10)->nullable(false);
+        $table->string('code',20)->nullable(false);
         $table->string('icon')->nullable(true);
-        $table->string('sign',10)->nullable(true);
+        $table->string('sign',20)->nullable(true);
         $table->string('title')->nullable(true);
         $table->string('country_code',5)->nullable(true);
         $table->integer('crypto')->nullable(true);
+        $table->integer('private')->nullable(true);
         $table->status();
         // index
         $table->unique(['code']);
@@ -59,6 +60,9 @@ class CurrencySchema extends Schema
     {              
         if ($this->hasColumn('crypto') == false) {
             $table->integer('crypto')->nullable(true); 
+        }
+        if ($this->hasColumn('private') == false) {
+            $table->integer('private')->nullable(true); 
         }
     }
 

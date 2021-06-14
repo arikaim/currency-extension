@@ -45,6 +45,7 @@ class Currency extends Model
         'default',
         'sign',
         'crypto',
+        'private',
         'title'
     ];
     
@@ -64,6 +65,17 @@ class Currency extends Model
     public function scopeCryptoQuery($query)
     {
         return $query->where('crypto','=',1);
+    }
+
+    /**
+     * Get private (in site only) query
+     *
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopePrivateQuery($query)
+    {
+        return $query->where('private','=',1);
     }
 
     /**
