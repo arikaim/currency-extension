@@ -1,7 +1,4 @@
-{% set id = id|default('currency_dropdown') %}
-{% set name = name|default('currency') %}
 {% set size = size|default(5) %}
-{% set class = class|default('selection') %}
 {% set data_field = data_field|default('uuid') %}
 {% set model = createModel('Currency','currency') %}
 {% set currency = model.getActive().orderBy('code') %}
@@ -11,8 +8,8 @@
 {% endif %}
 {% set selectet_text = (selected is empty) ? labels.select : selected.code %}
 {% set selected_value = (selected is empty) ? null : selected[data_field] %}
-<div class="ui search dropdown currency-dropdown {{ class }}" id="{{ id }}">
-    <input name="{{ name }}" type="hidden" value="{{ selected_value }}">
+<div class="ui search dropdown currency-dropdown {{ class|default('selection') }}" id="{{ id|default('currency_dropdown') }}">
+    <input name="{{ name|default('currency') }}" type="hidden" value="{{ selected_value }}">
     {% if hide_icon != true %}
     <i class="money bill alternate outline icon {{ icon }}"></i>
     {% endif %}
