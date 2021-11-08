@@ -2,9 +2,9 @@
     { id: 'currency_button', title: labels.view.content, component: 'currency::admin.currency', icon: 'list', active: true }
 ] %}
 
-{{  component('components:tabs',{ 
+{{  component('semantic~tabs',{ 
         items: items,
-        menu: { component: 'system:admin.extensions.menu.actions', extension: 'blog' },
+        menu: { component: 'system:admin.extensions.menu.actions', extension: 'currency' },
         content: { component: 'currency::admin.currency' } 
     })
 }}

@@ -1,8 +1,6 @@
-{% set size = size|default(5) %}
 {% set data_field = data_field|default('uuid') %}
 {% set model = createModel('Currency','currency') %}
-{% set currency = model.getActive().orderBy('code') %}
-{% set items = currency.take(size).get() %}
+{% set items = model.getActive().orderBy('code').get() %}
 {% if selected is empty %}
     {% set selected = model.getDefault() %}
 {% endif %}

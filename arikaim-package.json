@@ -5,7 +5,7 @@
     "type": "user",
     "description": "Manage currencies",
     "short-description": "Currencies",
-    "version": "1.0.6",    
+    "version": "1.0.7",    
     "repository": "https://github.com/arikaim/currency-extension.git",
     "position": "5",
     "install-order": 1,
