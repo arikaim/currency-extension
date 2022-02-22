@@ -1,9 +1,7 @@
-{% set items = [  
-    { id: 'currency_button', title: labels.view.content, component: 'currency::admin.currency', icon: 'list', active: true }
-] %}
-
 {{  component('semantic~tabs',{ 
-        items: items,
+        items: [  
+            { id: 'currency_button', title: labels.view.content, component: 'currency::admin.currency', icon: 'list', active: true }
+        ],
         menu: { component: 'system:admin.extensions.menu.actions', extension: 'currency' },
         content: { component: 'currency::admin.currency' } 
     })

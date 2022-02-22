@@ -1,27 +1,29 @@
 <div class="ui segment">
     <div class="ui stackable grid">
-        <div class='fifteen wide column'>
+        <div class='ten wide column'>
         </div>
-        <div class="one wide column right floated">       
+        <div class="six wide column right aligned">       
             {{ component('semantic~paginator.dropdown',{ namespace: 'currency' }) }}
         </div>
     </div>
 </div>
-<table class="ui compact stackable borderless basic table mt-2">
-    <thead>
-        <tr class="table-head">                          
-            <th class="collapsing two wide">{{ columns.action }}</th>
-            <th class="collapsing one wide">{{ columns.status }}</th>
-            <th class="collapsing one wide">{{ columns.code }}</th>
-            <th class="collapsing one wide">{{ columns.sign }}</th>
-            <th class="collapsing one wide">{{ columns.icon }}</th>      
-            <th class="ten wide">{{ columns.title }}</th>               
-        </tr>
-    </thead>
-    <tbody id="items_list" component="currency::admin.currency.view.rows" namespace="currency">
-        {{ component('currency::admin.currency.view.rows') }}   
-    </tbody>  
-</table>
-<div class="mt-2">
-    {{ component('semantic~paginator',{ namespace: 'currency' }) }}
+<div class="ui segment">
+    <table class="ui compact stackable borderless basic table mt-2">
+        <thead>
+            <tr class="table-head">                          
+                <th class="collapsing two wide">{{ columns.action }}</th>
+                <th class="collapsing two wide">{{ columns.status }}</th>
+                <th class="collapsing one wide">{{ columns.code }}</th>
+                <th class="collapsing one wide">{{ columns.sign }}</th>
+                <th class="collapsing one wide">{{ columns.icon }}</th>      
+                <th>{{ columns.title }}</th>               
+            </tr>
+        </thead>
+        <tbody id="items_list" component="currency::admin.currency.view.rows" namespace="currency">
+            {{ component('currency::admin.currency.view.rows') }}   
+        </tbody>  
+    </table>
+    <div class="mt-2">
+        {{ component('semantic~paginator',{ namespace: 'currency' }) }}
+    </div>
 </div>
