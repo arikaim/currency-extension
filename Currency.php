@@ -33,6 +33,8 @@ class Currency extends Extension
         $this->addApiRoute('GET','/api/currency/list/[{query}]','CurrencyApi','getDropdownList');   
         // Create db tables        
         $this->createDbTable('CurrencySchema');
+        // Services
+        $this->registerService('Currency');
     }   
 
     /**

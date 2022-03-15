@@ -38,4 +38,28 @@ class Currency extends Service implements ServiceInterface
 
         return (\is_object($model) == true) ? $model->id : null;
     }
+
+    /**
+     * Get default currency id
+     *
+     * @return integer
+     */
+    public function getDefaultCurrencyId(): int
+    {
+        $model = Model::Currency('currency')->getDefault();
+
+        return (int)$model->id;
+    }
+
+     /**
+     * Get default currency cdoe
+     *
+     * @return string
+     */
+    public function getDefaultCurrencyCode(): string
+    {
+        $model = Model::Currency('currency')->getDefault();
+
+        return (int)$model->code;
+    }
 }
