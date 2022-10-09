@@ -84,14 +84,11 @@ class Currency extends Model
      * @param string|int $code
      * @return Model|null
      */
-    public function findCurrency($code)
+    public function findCurrency($code): ?object
     {
         $model = $this->findById($code);
-        if (\is_object($model) == true) {
-            return $model;
-        }
-
-        return $this->findByColumn($code,'code');
+       
+        return ($model != null) ? $model : $this->findByColumn($code,'code');
     }
 
     /**
@@ -104,6 +101,6 @@ class Currency extends Model
     {
         $model = $this->findCurrency($code);
 
-        return (\is_object($model) == true) ? $model->id : null;
+        return ($model != null) ? $model->id : null;
     }
 }

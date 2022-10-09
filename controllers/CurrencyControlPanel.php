@@ -28,16 +28,6 @@ class CurrencyControlPanel extends ControlPanelApiController
     public function init()
     {
         $this->loadMessages('currency::admin.messages');
-    }
-
-    /**
-     * Constructor
-     *
-     * @param Container|null $container
-     */
-    public function __construct($container = null)
-    {
-        parent::__construct($container);
         $this->setExtensionName('currency');
         $this->setModelClass('Currency');
     }
@@ -56,14 +46,14 @@ class CurrencyControlPanel extends ControlPanelApiController
             
             $currency = Model::Currency('currency');
             $model = $currency->findByColumn($data['code'],'code');
-            if (\is_object($model) == true) {
-                $this->error('errors.exist');
+            if (($model) != null) {
+                $this->error('errors.exist','Currency with this code exist.');
                 return;
             }
 
             $newModel = $currency->create($data->toArray());
 
-            $this->setResponse(\is_object($newModel),function() use($newModel) {            
+            $this->setResponse(($newModel != null),function() use($newModel) {            
                 $this
                     ->message('add')
                     ->field('uuid',$newModel->uuid);  
@@ -90,8 +80,8 @@ class CurrencyControlPanel extends ControlPanelApiController
             $data['private'] = $data->get('private',0);
 
             $model = $currency->where('code','=',$data['code'])->where('uuid','<>',$data['uuid'])->first();
-            if (\is_object($model) == true) {
-                $this->error('errors.exist');
+            if ($model != null) {
+                $this->error('errors.exist','Currency with this code exist');
                 return;
             }
 

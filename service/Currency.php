@@ -36,7 +36,7 @@ class Currency extends Service implements ServiceInterface
     {
         $model = Model::Currency('currency')->findCurrency($code);
 
-        return (\is_object($model) == true) ? $model->id : null;
+        return ($model != null) ? $model->id : null;
     }
 
     /**
@@ -48,7 +48,7 @@ class Currency extends Service implements ServiceInterface
     {
         $model = Model::Currency('currency')->getDefault();
 
-        return (int)$model->id;
+        return ($model != null) ? (int)$model->id : 1;
     }
 
      /**
@@ -60,6 +60,6 @@ class Currency extends Service implements ServiceInterface
     {
         $model = Model::Currency('currency')->getDefault();
 
-        return (int)$model->code;
+        return ($model != null) ? (string)$model->code : 'USD';
     }
 }
