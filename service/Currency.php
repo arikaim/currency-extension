@@ -29,11 +29,15 @@ class Currency extends Service implements ServiceInterface
     /**
      * Get currency id
      *
-     * @param string $code
+     * @param string|null $code
      * @return integer|null
      */
-    public function getId(string $code): ?int
+    public function getId(?string $code = null): ?int
     {
+        if (empty($code) == true) {
+            return $this->getDefaultCurrencyId();
+        }
+
         $model = Model::Currency('currency')->findCurrency($code);
 
         return ($model != null) ? $model->id : null;
