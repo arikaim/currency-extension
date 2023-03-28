@@ -1,15 +1,7 @@
-{{  component('semantic~tabs.vertical',{ 
-        items: [ 
-            { title: labels.view, component: 'currency::admin.currency.view', icon: 'list', active: true },
-            { title: labels.add, component: 'currency::admin.currency.add', icon: 'plus' },
-            { title: labels.edit, component: 'currency::admin.currency.edit', icon: 'edit' }
-        ], 
-        menu: { id: 'currency_menu' }, 
-        item_class: 'currency-tab-item',
-        content: { 
-            component: 'currency::admin.currency.view', 
-            params: params,
-            id: "currency_content" 
-        } 
-    })
-}}
+<div class="ui two column grid">
+    <div class="column">
+        {{ component('currency::admin.currency.view') }}
+    </div>
+    <div class="column" id="details_content">
+    </div>
+</div>

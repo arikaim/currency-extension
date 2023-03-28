@@ -10,8 +10,8 @@
         }
     },
     "labels": {
-        "default": "Default",
-        "set": "Set default",
+        "primary": "Primary",
+        "set": "Set primary",
         "crypto": "Crypto",
         "private": "Private"
     }  

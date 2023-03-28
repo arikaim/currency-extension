@@ -1,17 +1,16 @@
-
 {% if uuid is not empty %}
-{% set currency = createModel('Currency','currency').findById(uuid) %}
+    {% set currency = createModel('Currency','currency').findById(uuid) %}
 {% endif %}
 <form class="ui equal width form" id="currency_form">  
     <input type="hidden" name="uuid" id="uuid" value="{{ uuid }}">     
     <div class="field required">
         <label>{{ fields.title.label }}</label>
-        <input type="text" name="title" id="title" {{ fields.title.placeholder|attr('placeholder') }} value="{{ currency.title }}">  
+        <input rule="minLength[2]" type="text" name="title" id="title" {{ fields.title.placeholder|attr('placeholder') }} value="{{ currency.title }}">  
     </div>
     <div class="fields">
         <div class="field">
             <label>{{ fields.code.label }}</label>
-            <input type="text" name="code" id="code" {{ fields.code.placeholder|attr('placeholder') }} value="{{ currency.code }}"> 
+            <input rule="minLength[2]" type="text" name="code" id="code" {{ fields.code.placeholder|attr('placeholder') }} value="{{ currency.code }}"> 
         </div>    
         <div class="field">
             <label>{{ fields.icon.label }}</label>

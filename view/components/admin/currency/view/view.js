@@ -14,7 +14,7 @@ function CurrencyView() {
             var uuid = $(element).attr('uuid');
 
             arikaim.page.loadContent({
-                id: 'currency_content',
+                id: 'details_content',
                 component: 'currency::admin.currency.edit',
                 params: { uuid: uuid }
             }); 
@@ -56,12 +56,17 @@ function CurrencyView() {
     this.init = function() {
         this.loadMessages('currency::admin');
 
+        var crypto = $('#items_list').attr('crypto');
+
         paginator.init('items_list',{
             name: 'currency::admin.currency.view.rows',
             params: {
-                namespace: 'currency'
+                namespace: 'currency',
+                crypto: crypto
             }
         }); 
+
+        arikaim.ui.loadComponentButton('.create-currency');
     };
 }
 

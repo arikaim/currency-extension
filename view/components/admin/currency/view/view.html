@@ -1,26 +1,37 @@
 <div class="ui segment">
     <div class="ui stackable grid">
         <div class='ten wide column'>
+            <button 
+                mountTo="details_content"
+                component="currency::admin.currency.add"
+                title="{{ tooltip.create }}"
+                class="ui mini curcular green icon button create-currency">
+                <i class="icon plus"></i>
+            </button>
         </div>
         <div class="six wide column right aligned">       
-            {{ component('semantic~paginator.dropdown',{ namespace: 'currency' }) }}
+            {{ component('semantic~paginator.dropdown',{ class: 'mini', namespace: 'currency' }) }}
         </div>
     </div>
 </div>
 <div class="ui segment">
-    <table class="ui compact stackable borderless basic table mt-2">
+    <table class="ui compact stackable borderless basic table">
         <thead>
             <tr class="table-head">                          
-                <th class="collapsing two wide">{{ columns.action }}</th>
-                <th class="collapsing two wide">{{ columns.status }}</th>
+                <th class="collapsing three wide">{{ columns.action }}</th>
+                <th class="collapsing three wide">{{ columns.status }}</th>
                 <th class="collapsing one wide">{{ columns.code }}</th>
                 <th class="collapsing one wide">{{ columns.sign }}</th>
                 <th class="collapsing one wide">{{ columns.icon }}</th>      
                 <th>{{ columns.title }}</th>               
             </tr>
         </thead>
-        <tbody id="items_list" component="currency::admin.currency.view.rows" namespace="currency">
-            {{ component('currency::admin.currency.view.rows') }}   
+        <tbody 
+            id="items_list" 
+            crypto="{{ crypto }}"
+            component="currency::admin.currency.view.rows" 
+            namespace="currency">
+            {{ component('currency::admin.currency.view.rows',{ crypto: crypto }) }}   
         </tbody>  
     </table>
     <div class="mt-2">

@@ -36,14 +36,7 @@ function CurrencyControlPanel() {
 
         return arikaim.put('/api/currency/admin/status',data,onSuccess,onError);      
     };
-
-    this.init = function() {
-        arikaim.ui.tab('.currency-tab-item','currency_content');
-    }
 }
 
 var currency = new CurrencyControlPanel();
 
-arikaim.component.onLoaded(function() {
-    currency.init();
-});

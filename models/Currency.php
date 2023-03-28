@@ -60,11 +60,12 @@ class Currency extends Model
      * Get crypto query
      *
      * @param Builder $query
+     * @param bool|null $crypto
      * @return Builder
      */
-    public function scopeCryptoQuery($query)
+    public function scopeCryptoQuery($query, ?bool $crypto = false)
     {
-        return $query->where('crypto','=',1);
+        return ($crypto == false) ? $query : $query->where('crypto','=',1);
     }
 
     /**

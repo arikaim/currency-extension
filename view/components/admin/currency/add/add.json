@@ -1,6 +1,4 @@
 {
-    "title": {
-        "content": "Add",
-        "icon": "plus"              
-    }    
+    "title": "Add",   
+    "icon": "plus"                 
 }

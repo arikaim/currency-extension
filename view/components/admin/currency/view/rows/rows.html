@@ -1,19 +1,20 @@
-{% set currency = createModel('Currency','currency').orderBy('default','desc').orderBy('title') %}
+
+{% set currency = createModel('Currency','currency').cryptoQuery(crypto).orderBy('default','desc').orderBy('title') %}
 {% set items = paginate(currency,'currency') %}
 {% set items = items.getItems() %}
 {% for item in items %}
 <tr id="{{ item.uuid }}">        
     <td>
-        <button class="ui icon mini basic button edit-currency" uuid="{{ item.uuid }}">
-            <i class="icon edit "></i>
+        <button class="ui icon mini compact basic button edit-currency" uuid="{{ item.uuid }}">
+            <i class="icon edit"></i>
         </button>
-        <button class="ui icon basic mini button delete-currency" uuid="{{ item.uuid }}" data-title="{{ item.title }}">
+        <button class="ui icon basic mini compact button delete-currency" uuid="{{ item.uuid }}" data-title="{{ item.title }}">
             <i class="icon trash orange"></i>
         </button>      
         {% if item.default == '1' %}
-            <div class="ui basic blue label default-label">{{ labels.default }}</div>
+            <div class="ui basic blue label mini default-label">{{ labels.primary }}</div>
         {% else %}
-            <button class="ui icon basic mini button default-currency" uuid="{{ item.uuid }}" title="{{ labels.set }}">
+            <button class="ui icon basic mini compact button default-currency" uuid="{{ item.uuid }}" title="{{ labels.set }}">
                 <i class="icon check"></i>
             </button>
         {% endif %}                   
