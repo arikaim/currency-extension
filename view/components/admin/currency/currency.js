@@ -9,15 +9,19 @@
 function CurrencyControlPanel() {
 
     this.delete = function(uuid, onSuccess, onError) {
-        return arikaim.delete('/api/currency/admin/delete/' + uuid,onSuccess,onError);      
+        return arikaim.delete('/api/admin/currency/delete/' + uuid,onSuccess,onError);      
     };
 
     this.add = function(formId, onSuccess, onError) {
-        return arikaim.post('/api/currency/admin/add',formId,onSuccess,onError); 
+        return arikaim.post('/api/admin/currency/add',formId,onSuccess,onError); 
     };
 
     this.update = function(formId, onSuccess, onError) {
-        return arikaim.put('/api/currency/admin/update',formId,onSuccess,onError); 
+        return arikaim.put('/api/admin/currency/update',formId,onSuccess,onError); 
+    };
+
+    this.updateExchangeRate = function(formId, onSuccess, onError) {
+        return arikaim.put('/api/admin/currency/rate',formId,onSuccess,onError); 
     };
 
     this.setDefault = function(uuid, onSuccess, onError) {           
@@ -25,7 +29,7 @@ function CurrencyControlPanel() {
             uuid: uuid            
         };
 
-        return arikaim.put('/api/currency/admin/default',data,onSuccess,onError);      
+        return arikaim.put('/api/admin/currency/default',data,onSuccess,onError);      
     };
 
     this.setStatus = function(uuid, status, onSuccess, onError) {           
@@ -34,7 +38,7 @@ function CurrencyControlPanel() {
             status: status 
         };
 
-        return arikaim.put('/api/currency/admin/status',data,onSuccess,onError);      
+        return arikaim.put('/api/admin/currency/status',data,onSuccess,onError);      
     };
 }
 

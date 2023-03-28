@@ -1,0 +1,12 @@
+{
+    "title": "Currency Exchange Rate",
+    "icon": "money bill alternate outline",
+    "labels": {                
+    },
+    "fields": {
+        "rate": {
+            "label": "Exchange Rate",
+            "placeholder": "Enter Exchange Rate"
+        }
+    }
+}

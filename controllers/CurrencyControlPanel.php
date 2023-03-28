@@ -46,7 +46,7 @@ class CurrencyControlPanel extends ControlPanelApiController
             
             $currency = Model::Currency('currency');
             $model = $currency->findByColumn($data['code'],'code');
-            if (($model) != null) {
+            if ($model != null) {
                 $this->error('errors.exist','Currency with this code exist.');
                 return;
             }
@@ -62,6 +62,40 @@ class CurrencyControlPanel extends ControlPanelApiController
         $data
             ->addFilter('code','UpperCase')
             ->filterAndValidate();
+    }
+
+    /**
+     * Update currency
+     *
+     * @param \Psr\Http\Message\ServerRequestInterface $request
+     * @param \Psr\Http\Message\ResponseInterface $response
+     * @param Validator $data
+     * @return Psr\Http\Message\ResponseInterface
+    */
+    public function setExchangeRate($request, $response, $data) 
+    { 
+        $data
+            ->addRule('Number','value')
+            ->validate(true);
+
+        $uuid = $data->get('uuid');
+        $value = $data->get('value');
+
+        $currency = Model::Currency('currency')->findById($uuid);
+        if ($currency == null) {
+            $this->error('errors.id','Not valid currency id');
+            return;
+        }
+
+        $rate = Model::CurrencyRates('currency')->saveExchangeRate($currency->id,$value);
+        if ($rate == null) {
+            $this->error('errors.rate','Error save exchange rate');
+            return;
+        }
+
+        $this
+            ->message('Exchange rate saved')
+            ->field('uuid',$uuid);
     }
 
     /**

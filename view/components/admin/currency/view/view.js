@@ -10,6 +10,8 @@ function CurrencyView() {
     var self = this;
     
     this.initRows = function() {
+        arikaim.ui.loadComponentButton('.currency-action');
+
         arikaim.ui.button('.edit-currency',function(element) {
             var uuid = $(element).attr('uuid');
 
@@ -57,7 +59,6 @@ function CurrencyView() {
         this.loadMessages('currency::admin');
 
         var crypto = $('#items_list').attr('crypto');
-
         paginator.init('items_list',{
             name: 'currency::admin.currency.view.rows',
             params: {

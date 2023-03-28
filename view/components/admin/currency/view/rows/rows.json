@@ -10,6 +10,8 @@
         }
     },
     "labels": {
+        "details": "Details",
+        "rates": "Exchange Rates",
         "primary": "Primary",
         "set": "Set primary",
         "crypto": "Crypto",

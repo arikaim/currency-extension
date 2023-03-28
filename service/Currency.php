@@ -44,6 +44,21 @@ class Currency extends Service implements ServiceInterface
     }
 
     /**
+     * Convert currency 
+     *
+     * @param string|null $currency
+     * @param float $amount
+     * @return float|null
+     */
+    public function convert(?string $currency, float $amount): ?float
+    {
+        $model = Model::Currency('currency')->findCurrency($currency);
+        $rate = ($model == null) ? null : $model->getExchangeRate();
+        
+        return ($rate == null) ? null : (float)($amount * $rate);           
+    }
+
+    /**
      * Get default currency id
      *
      * @return integer

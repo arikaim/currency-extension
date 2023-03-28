@@ -11,6 +11,8 @@ namespace Arikaim\Extensions\Currency\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Arikaim\Extensions\Currency\Models\CurrencyRates;
+
 use Arikaim\Core\Db\Traits\Uuid;
 use Arikaim\Core\Db\Traits\Find;
 use Arikaim\Core\Db\Traits\Status;
@@ -55,6 +57,28 @@ class Currency extends Model
      * @var boolean
      */
     public $timestamps = false;
+
+    /**
+     * Exchange rate relation
+     *
+     * @return Relation|null
+     */
+    public function rate()
+    {
+        return $this->hasOne(CurrencyRates::class,'currency_id');
+    }
+
+    /**
+     * Get exchange rate
+     *
+     * @return float|null
+     */
+    public function getExchangeRate(): ?float
+    {
+        $rate = $this->rate()->first();
+        
+        return (empty($rate) == true) ? null : (float)$rate->value;
+    }
 
     /**
      * Get crypto query
