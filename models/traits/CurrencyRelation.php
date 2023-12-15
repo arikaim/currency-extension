@@ -29,6 +29,17 @@ trait CurrencyRelation
     }    
 
     /**
+     * Find currency
+     *
+     * @param string|int|null $code
+     * @return object|null
+     */
+    public function findCurrency($code): ?object
+    {
+        return (empty($code) == true) ? $this->currency() : $this->currency()->findCurrency($code);
+    }
+
+    /**
      * Get currency id attribute name
      *
      * @return string
