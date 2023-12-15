@@ -36,7 +36,7 @@ trait CurrencyRelation
      */
     public function findCurrency($code): ?object
     {
-        return (empty($code) == true) ? $this->currency() : $this->currency()->findCurrency($code);
+        return (empty($code) == true) ? $this->currency : $this->currency->findCurrency($code);
     }
 
     /**
