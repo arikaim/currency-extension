@@ -19,11 +19,13 @@ use Arikaim\Core\Service\ServiceInterface;
 class Currency extends Service implements ServiceInterface
 {
     /**
-     * Constructor
+     * Init service
+     *
+     * @return void
      */
-    public function __construct()
+    public function boot()
     {
-        $this->setServiceName('currency');
+        $this->setServiceName('currency');   
     }
 
     /**
@@ -70,7 +72,7 @@ class Currency extends Service implements ServiceInterface
         return ($model != null) ? (int)$model->id : 1;
     }
 
-     /**
+    /**
      * Get default currency cdoe
      *
      * @return string
@@ -80,5 +82,15 @@ class Currency extends Service implements ServiceInterface
         $model = Model::Currency('currency')->getDefault();
 
         return ($model != null) ? (string)$model->code : 'USD';
+    }
+
+    /**
+     * Get default currency
+     *
+     * @return object|null
+     */
+    public function getDefaultCurrency(): ?object
+    {
+        return Model::Currency('currency')->getDefault();     
     }
 }
