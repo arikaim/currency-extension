@@ -37,7 +37,8 @@ class CurrencyApi extends ApiController
     */
     public function getDropdownList($request, $response, $data) 
     {       
-        $data->validate(true);
+        $data
+            ->validate(true);
        
         $search = $data->get('query','');
         $size = $data->get('size',5);

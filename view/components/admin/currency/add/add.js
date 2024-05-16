@@ -6,5 +6,7 @@ arikaim.component.onLoaded(function() {
     },function(result) {
         arikaim.ui.form.clear('#currency_form');
         arikaim.ui.form.showMessage(result.message);
+        
+        arikaim.events.emit('add.currency',result.uuid);
     });
 });

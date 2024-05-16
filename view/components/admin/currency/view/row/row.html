@@ -1,0 +1,55 @@
+{% if uuid is not empty %}
+    {% set item = createModel('Currency','currency').findById(uuid) %}
+{% endif %}
+<tr id="row_{{ item.uuid }}">        
+    <td>
+        <button 
+            title="{{ labels.details }}"
+            mountTo="details_content"
+            component="currency::admin.currency.details"
+            class="ui icon mini compact basic button currency-action" 
+            params="uuid:{{ item.uuid }}">
+            <i class="icon info"></i>
+        </button>
+        <button 
+            title="{{ labels.rates }}"
+            mountTo="details_content"
+            component="currency::admin.currency.rates"
+            class="ui icon mini compact basic button currency-action" 
+            params="uuid:{{ item.uuid }}">
+            <i class="money bill alternate outline icon"></i>
+        </button>
+        <button class="ui icon mini compact basic button edit-currency" uuid="{{ item.uuid }}">
+            <i class="icon edit"></i>
+        </button>
+        <button class="ui icon basic mini compact button delete-currency" uuid="{{ item.uuid }}" data-title="{{ item.title }}">
+            <i class="icon trash orange"></i>
+        </button>      
+        {% if item.default == '1' %}
+            <div class="ui basic blue label mini default-label">{{ labels.primary }}</div>
+        {% else %}
+            <button class="ui icon basic mini compact button default-currency" uuid="{{ item.uuid }}" title="{{ labels.set }}">
+                <i class="icon check"></i>
+            </button>
+        {% endif %}                   
+    </td>
+    <td>
+        {{ component('semantic~status.dropdown',{ status: item.status, uuid: item.uuid, skip: [2,3,4,5] }) }} 
+    </td>
+    <td>{{ item.code }}</td>
+    <td>{{ item.sign }}</td>
+    <td>
+        {% if item.icon is not empty %}
+        <i class="icon {{ item.icon }}"></i>
+        {% endif %}
+    </td>
+    <td>
+        {% if item.crypto == 1 %}
+            <div class="ui horizontal basic blue mini label">{{ labels.crypto }}</div>
+        {% endif %}
+        {% if item.private == 1 %}
+            <div class="ui horizontal basic orange mini label">{{ labels.private }}</div>
+        {% endif %}
+        {{ item.title }}      
+    </td>            
+</tr>

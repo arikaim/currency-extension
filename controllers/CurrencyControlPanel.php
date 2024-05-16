@@ -42,26 +42,24 @@ class CurrencyControlPanel extends ControlPanelApiController
     */
     public function addController($request, $response, $data) 
     {        
-        $this->onDataValid(function($data) {
-            
-            $currency = Model::Currency('currency');
-            $model = $currency->findByColumn($data['code'],'code');
-            if ($model != null) {
-                $this->error('errors.exist','Currency with this code exist.');
-                return;
-            }
-
-            $newModel = $currency->create($data->toArray());
-
-            $this->setResponse(($newModel != null),function() use($newModel) {            
-                $this
-                    ->message('add')
-                    ->field('uuid',$newModel->uuid);  
-            },'errors.add');
-        }); 
         $data
             ->addFilter('code','UpperCase')
-            ->filterAndValidate();
+            ->validate(true);
+     
+        $currency = Model::Currency('currency');
+        $model = $currency->findByColumn($data['code'],'code');
+        if ($model != null) {
+            $this->error('errors.exist','Currency with this code exist.');
+            return;
+        }
+
+        $newModel = $currency->create($data->toArray());
+
+        $this->setResponse(($newModel != null),function() use($newModel) {            
+            $this
+                ->message('add')
+                ->field('uuid',$newModel->uuid);  
+        },'errors.add');
     }
 
     /**
@@ -108,29 +106,28 @@ class CurrencyControlPanel extends ControlPanelApiController
     */
     public function updateController($request, $response, $data) 
     {        
-        $this->onDataValid(function($data) {
-            $currency = Model::Currency('currency');
-            $data['crypto'] = $data->get('crypto',0);
-            $data['private'] = $data->get('private',0);
-
-            $model = $currency->where('code','=',$data['code'])->where('uuid','<>',$data['uuid'])->first();
-            if ($model != null) {
-                $this->error('errors.exist','Currency with this code exist');
-                return;
-            }
-
-            $currency = $currency->findById($data['uuid']);
-            $result = $currency->update($data->toArray());
-
-            $this->setResponse($result,function() use($currency) {            
-                $this
-                    ->message('update')
-                    ->field('uuid',$currency->uuid);  
-            },'errors.update');
-        }); 
         $data
             ->addFilter('code','UpperCase')
-            ->filterAndValidate();
+            ->validate(true);
+
+        $currency = Model::Currency('currency');
+        $data['crypto'] = $data->get('crypto',0);
+        $data['private'] = $data->get('private',0);
+
+        $model = $currency->where('code','=',$data['code'])->where('uuid','<>',$data['uuid'])->first();
+        if ($model != null) {
+            $this->error('errors.exist','Currency with this code exist');
+            return;
+        }
+
+        $currency = $currency->findById($data['uuid']);
+        $result = $currency->update($data->toArray());
+
+        $this->setResponse($result,function() use($currency) {            
+            $this
+                ->message('update')
+                ->field('uuid',$currency->uuid);  
+        },'errors.update');
     }
 
     /**
@@ -143,16 +140,16 @@ class CurrencyControlPanel extends ControlPanelApiController
     */
     public function deleteController($request, $response, $data) 
     {        
-        $this->onDataValid(function($data) {
-            $currency = Model::Currency('currency')->findById($data['uuid']);
-            $result = $currency->delete();
+        $data
+            ->validate(true);
+      
+        $currency = Model::Currency('currency')->findById($data['uuid']);
+        $result = $currency->delete();
 
-            $this->setResponse($result,function() use($currency) {            
-                $this
-                    ->message('delete')
-                    ->field('uuid',$currency->uuid);  
-            },'errors.delete');
-        }); 
-        $data->validate();
+        $this->setResponse($result,function() use($currency) {            
+            $this
+                ->message('delete')
+                ->field('uuid',$currency->uuid);  
+        },'errors.delete');
     }
 }

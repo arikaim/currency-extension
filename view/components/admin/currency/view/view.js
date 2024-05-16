@@ -49,7 +49,7 @@ function CurrencyView() {
                 description: message
             },function() {
                 currency.delete(uuid,function(result) {
-                    $('#' + uuid).remove();                
+                    $('#row_' + uuid).remove();                
                 });
             });
         });
@@ -67,13 +67,36 @@ function CurrencyView() {
             }
         }); 
 
+        arikaim.events.on('add.currency',function(uuid) {
+            arikaim.page.loadContent({
+                id: 'items_list',
+                append: true,
+                component: 'currency::admin.currency.view.row',
+                params: { uuid: uuid }
+            },function() {
+                self.initRows();
+            }); 
+        },'addCurrencyHandler');
+
+        arikaim.events.on('update.currency',function(uuid) {
+            arikaim.page.loadContent({
+                id: 'row_' + uuid,
+                replace: true,
+                component: 'currency::admin.currency.view.row',
+                params: { uuid: uuid }
+            },function() {
+                self.initRows();
+            }); 
+        },'updateCurrencyHandler');
+
+
         arikaim.ui.loadComponentButton('.create-currency');
+        currencyView.initRows();
     };
 }
 
 var currencyView = new createObject(CurrencyView,ControlPanelView);
 
 arikaim.component.onLoaded(function() {
-    currencyView.init();
-    currencyView.initRows();
+    currencyView.init(); 
 });
