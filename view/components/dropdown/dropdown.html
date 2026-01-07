@@ -4,20 +4,27 @@
 {% if selected is empty %}
     {% set selected = model.getDefault() %}
 {% endif %}
-{% set selectet_text = (selected is empty) ? labels.select : selected.code %}
+
 {% set selected_value = (selected is empty) ? null : selected[data_field] %}
-<div class="ui search dropdown currency-dropdown {{ class|default('selection') }}" id="{{ id|default('currency_dropdown') }}">
-    <input name="{{ name|default('currency') }}" type="hidden" value="{{ selected_value }}">
-    {% if hide_icon != true %}
-    <i class="money bill alternate outline icon {{ icon }}"></i>
+<select 
+    name="{{ name|default('currency') }}"
+    class="select {{ size|default('select-sm') }} currency-dropdown {{ class }}" 
+    id="{{ id|default('currency_dropdown') }}">
+    {% if hide_empty =! true %}
+        <option 
+            value=""
+            {{ (selected_value == item[data_field]) ? 'selected' : '' }}>
+            {{ labels.select }}
+        </option>
     {% endif %}
-    <div class="text">{{ selectet_text }}</div>
-    <i class="dropdown icon"></i>
-    <div class="menu">
-        {% for item in items %}
-            <div class="item" data-value="{{ item[data_field] }}" currency-code="{{ item.code }}" currency-icon="{{ item.icon }}">
-                {{ item.code }}
-            </div>
-        {% endfor %}
-    </div>
-</div>
+
+    {% for item in items %}
+        <option 
+            {{ (selected_value == item[data_field]) ? 'selected' : '' }}
+            value="{{ item[data_field] }}" 
+            currency-code="{{ item.code }}" 
+            currency-icon="{{ item.icon }}">
+            {{ item.code }}
+        </option>
+    {% endfor %}    
+</select>

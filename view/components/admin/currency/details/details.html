@@ -1,39 +1,35 @@
 {% if uuid is not empty %}
     {% set currency = createModel('Currency','currency').findById(uuid) %}  
 {% endif %}
-{% component 'semantic~panel' %}
-<div>
-    <table class="ui very basic definition table">
+{% component 'system:admin.panel' %}
+    <table class="{{ theme.table.details }}">
         <thead>
             <tr>
-                <th class="three wide"></th>
+                <th></th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="right aligned">{{ labels.id }}</td>
+                <td class="{{ theme.table.field.label }}">{{ labels.id }}</td>
                 <td>
-                    <div class="ui basic label">
-                        {{ currency.id }}
-                    </div>
-                    {{ currency.uuid }}
+                    {{ component('system:admin.view.id',{ model: currency }) }}                    
                 </td>
             </tr>
             <tr>
-                <td class="right aligned">{{ labels.status }}</td>
+                <td class="{{ theme.table.field.label }}">{{ labels.status }}</td>
                 <td>
-                    {{ component('semantic~status.label',{ status: currency.status }) }}                   
+                    {{ component('system:admin.status.label',{ status: currency.status }) }}                   
                 </td>
             </tr>
             <tr>
-                <td class="right aligned">{{ labels.title }}</td>
+                <td class="{{ theme.table.field.label }}">{{ labels.title }}</td>
                 <td>
                     {{ currency.title }}
                 </td>
             </tr>
             <tr>
-                <td class="right aligned">
+                <td class=" {{ theme.table.field.label }}">
                     {{ labels.code }}
                 </td>
                 <td>
@@ -44,9 +40,9 @@
             </tr>    
             {% if currency.getExchangeRate() is not empty %}
             <tr>
-                <td class="right aligned">{{ labels.rate }}</td>
+                <td class="{{ theme.table.field.label }}">{{ labels.rate }}</td>
                 <td>
-                    <div class="ui basic mini label">USD</div>    
+                    <div class="badge badge-outline badge-sm">USD</div>    
                     <span>
                         {{ currency.getExchangeRate() }}
                     </span>                                       
@@ -55,5 +51,4 @@
             {% endif %}              
         </tbody>  
     </table>     
-</div>
 {% endcomponent %}

@@ -1,28 +1,21 @@
-<div class="ui segment">
-    <div class="ui stackable grid">
-        <div class='ten wide column'>
-            <button 
-                mountTo="details_content"
-                component="currency::admin.currency.add"
-                title="{{ tooltip.create }}"
-                class="ui mini curcular green icon button create-currency">
-                <i class="icon plus"></i>
-            </button>
-        </div>
-        <div class="six wide column right aligned">       
-            {{ component('semantic~paginator.dropdown',{ class: 'mini', namespace: 'currency' }) }}
-        </div>
-    </div>
+<div class="{{ theme.panel }}">
+    <button 
+        mountTo="details_content"
+        component="currency::admin.currency.add"
+        title="{{ tooltip.create }}"
+        class="{{ theme.buttons.green }} create-currency">
+        {{ buttons.create }}
+    </button>        
 </div>
-<div class="ui segment">
-    <table class="ui compact stackable borderless basic table">
+<div class="mt-4 {{ theme.panel }}">
+    <table class="{{ theme.table.default }}">
         <thead>
-            <tr class="table-head">                          
-                <th class="five wide">{{ columns.action }}</th>
-                <th class="collapsing three wide">{{ columns.status }}</th>
-                <th class="collapsing one wide">{{ columns.code }}</th>
-                <th class="collapsing one wide">{{ columns.sign }}</th>
-                <th class="collapsing one wide">{{ columns.icon }}</th>      
+            <tr>                          
+                <th >{{ columns.action }}</th>
+                <th >{{ columns.status }}</th>
+                <th >{{ columns.code }}</th>
+                <th >{{ columns.sign }}</th>
+                <th >{{ columns.icon }}</th>      
                 <th>{{ columns.title }}</th>               
             </tr>
         </thead>
@@ -34,7 +27,6 @@
             {{ component('currency::admin.currency.view.rows',{ crypto: crypto }) }}   
         </tbody>  
     </table>
-    <div class="mt-2">
-        {{ component('semantic~paginator',{ namespace: 'currency' }) }}
+    <div class="my-2 ml-2" id="paginator">        
     </div>
 </div>

@@ -2,6 +2,7 @@
 {% set currency = createModel('Currency','currency').cryptoQuery(crypto).orderBy('default','desc').orderBy('title') %}
 {% set items = paginate(currency,'currency') %}
 {% set items = items.getItems() %}
+
 {% for item in items %}
     {{ component('currency::admin.currency.view.row',{ item: item }) }}
 {% endfor %}

@@ -1,21 +1,22 @@
 {% if uuid is not empty %}
     {% set currency = createModel('Currency','currency').findById(uuid) %}
 {% endif %}
-{% component 'semantic~panel' %}
-<div>      
+{% component 'system:admin.panel' %}
     <div class="flex flex-row items-center my-2">
         <div class="px-2 font-bold">1</div>
-        <div class="ui basic label">
+        <div class="badge badge-sm badge-outline">
             {{ currency.code }}
         </div>
     </div>
-    <form class="ui form" id="currency_rate_form">  
+    <form class="form" id="currency_rate_form">  
         <input type="hidden" name="uuid" id="uuid" value="{{ uuid }}">  
-        <div class="ui two fields">
-            <div class="field required">
-                <label>{{ fields.rate.label }}</label>
-                <div class="ui labeled input">
-                    <div class="ui label">
+        <div class="{{ theme.form.fields }}">
+            <div class="{{ theme.form.field }} required">
+                <label class="{{ theme.form.label }}">
+                    {{ fields.rate.label }}
+                </label>
+                <div class="{{ theme.form.input }}">
+                    <div class="my-auto pr-2">
                         USD
                     </div>
                     <input 
@@ -28,7 +29,6 @@
                 </div>
             </div>
         </div>          
-        {{ component('semantic~form.footer') }}   
+        {{ component('system:form.footer') }}   
     </form>
-</div>
 {% endcomponent %}

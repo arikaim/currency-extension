@@ -1,8 +1,17 @@
-{{  component('semantic~tabs',{ 
+{{  component('system:admin.tabs',{ 
         items: [  
-            { id: 'currency_button', title: labels.view.content, component: 'currency::admin.currency', icon: 'list', active: true }
+            {                
+                title: labels.view.content, 
+                component: 'currency::admin.currency', 
+                svg_icon: 'icons~list', 
+                active: true 
+            }
         ],
-        menu: { component: 'system:admin.extensions.menu.actions', extension: 'currency' },
-        content: { component: 'currency::admin.currency' } 
+        menu: {            
+            extension: 'currency' 
+        },
+        content: { 
+            component: 'currency::admin.currency' 
+        } 
     })
 }}

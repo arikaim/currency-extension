@@ -7,48 +7,64 @@
             title="{{ labels.details }}"
             mountTo="details_content"
             component="currency::admin.currency.details"
-            class="ui icon mini compact basic button currency-action" 
+            class="{{ theme.buttons.icon }} currency-action" 
             params="uuid:{{ item.uuid }}">
-            <i class="icon info"></i>
+            {{ component('icons~info',theme.icons.menu,'svg') }}           
         </button>
         <button 
             title="{{ labels.rates }}"
             mountTo="details_content"
             component="currency::admin.currency.rates"
-            class="ui icon mini compact basic button currency-action" 
+            class="{{ theme.buttons.icon }} currency-action" 
             params="uuid:{{ item.uuid }}">
-            <i class="money bill alternate outline icon"></i>
+            {{ component('icons~billing',theme.icons.menu,'svg') }}           
         </button>
-        <button class="ui icon mini compact basic button edit-currency" uuid="{{ item.uuid }}">
-            <i class="icon edit"></i>
+        <button 
+            class="{{ theme.buttons.icon }} edit-currency" 
+            uuid="{{ item.uuid }}">
+            {{ component('icons~edit',theme.icons.menu,'svg') }}
         </button>
-        <button class="ui icon basic mini compact button delete-currency" uuid="{{ item.uuid }}" data-title="{{ item.title }}">
-            <i class="icon trash orange"></i>
+        <button 
+            class="{{ theme.buttons.icon }} delete-currency" 
+            uuid="{{ item.uuid }}" 
+            data-title="{{ item.title }}">
+            {{ component('icons~trash',theme.icons.delete,'svg') }}                 
         </button>      
         {% if item.default == '1' %}
-            <div class="ui basic blue label mini default-label">{{ labels.primary }}</div>
+            <div class="badge badge-sm badge-outline badge-primary default-label">{{ labels.primary }}</div>
         {% else %}
-            <button class="ui icon basic mini compact button default-currency" uuid="{{ item.uuid }}" title="{{ labels.set }}">
-                <i class="icon check"></i>
+            <button 
+                class="{{ theme.buttons.icon }} default-currency" 
+                uuid="{{ item.uuid }}" title="{{ labels.set }}">                
+                {{ component('icons~check',theme.icons.green,'svg') }}    
             </button>
         {% endif %}                   
     </td>
     <td>
-        {{ component('semantic~status.dropdown',{ status: item.status, uuid: item.uuid, skip: [2,3,4,5] }) }} 
+        {{  component('system:admin.status.dropdown',{ 
+                status: item.status, 
+                uuid: item.uuid, 
+                skip: [2,3,4,5] 
+            }) 
+        }} 
     </td>
     <td>{{ item.code }}</td>
     <td>{{ item.sign }}</td>
     <td>
-        {% if item.icon is not empty %}
-        <i class="icon {{ item.icon }}"></i>
+        {% if item.svg_icon is not empty %}
+            
         {% endif %}
     </td>
     <td>
         {% if item.crypto == 1 %}
-            <div class="ui horizontal basic blue mini label">{{ labels.crypto }}</div>
+            <div class="badge badge-sm badge-outline badge-info">
+                {{ labels.crypto }}
+            </div>
         {% endif %}
         {% if item.private == 1 %}
-            <div class="ui horizontal basic orange mini label">{{ labels.private }}</div>
+            <div class="badge badge-sm badge-outline badge-warning">
+                {{ labels.private }}
+            </div>
         {% endif %}
         {{ item.title }}      
     </td>            

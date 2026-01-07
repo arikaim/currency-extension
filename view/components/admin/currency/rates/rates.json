@@ -1,8 +1,6 @@
 {
     "title": "Currency Exchange Rate",
-    "icon": "money bill alternate outline",
-    "labels": {                
-    },
+    "icon": "icons~info",
     "fields": {
         "rate": {
             "label": "Exchange Rate",

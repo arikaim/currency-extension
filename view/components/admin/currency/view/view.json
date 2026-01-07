@@ -1,10 +1,9 @@
 {
-    "title": {
-        "content": "View",
-        "icon": "list"              
-    },
     "tooltip": {
-        "create": "Create"
+        "create": "Add currency"
+    },
+    "buttons": {
+        "create": "Add"
     },
     "columns": {
         "action": "Action",

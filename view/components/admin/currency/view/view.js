@@ -32,40 +32,29 @@ function CurrencyView() {
             });            
         });
 
-        $('.status-dropdown').dropdown({
-            onChange: function(value) {
-                var uuid = $(this).attr('uuid');
-                currency.setStatus(uuid,value);               
-            }
+        $('.status-dropdown').on('change', function() {
+            var val = $(this).val();
+            var uuid = $(this).attr('uuid');
+            
+            currency.setStatus(uuid,val);               
         });
 
         arikaim.ui.button('.delete-currency',function(element) {
             var uuid = $(element).attr('uuid');
             var title = $(element).attr('data-title');
-
             var message = arikaim.ui.template.render(self.getMessage('remove.content'),{ title: title });
-            modal.confirmDelete({ 
-                title: self.getMessage('remove.title'),
-                description: message
-            },function() {
+            
+            arikaim.ui.getComponent('confirm_delete').open(function() {
                 currency.delete(uuid,function(result) {
                     $('#row_' + uuid).remove();                
                 });
-            });
+            },message);
         });
     };
 
     this.init = function() {
         this.loadMessages('currency::admin');
-
-        var crypto = $('#items_list').attr('crypto');
-        paginator.init('items_list',{
-            name: 'currency::admin.currency.view.rows',
-            params: {
-                namespace: 'currency',
-                crypto: crypto
-            }
-        }); 
+        arikaim.ui.loadComponentButton('.create-currency');
 
         arikaim.events.on('add.currency',function(uuid) {
             arikaim.page.loadContent({
@@ -89,9 +78,7 @@ function CurrencyView() {
             }); 
         },'updateCurrencyHandler');
 
-
-        arikaim.ui.loadComponentButton('.create-currency');
-        currencyView.initRows();
+        this.initRows();
     };
 }
 

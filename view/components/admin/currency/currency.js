@@ -25,22 +25,17 @@ function CurrencyControlPanel() {
     };
 
     this.setDefault = function(uuid, onSuccess, onError) {           
-        var data = { 
+        return arikaim.put('/api/admin/currency/default',{ 
             uuid: uuid            
-        };
-
-        return arikaim.put('/api/admin/currency/default',data,onSuccess,onError);      
+        },onSuccess,onError);      
     };
 
     this.setStatus = function(uuid, status, onSuccess, onError) {           
-        var data = { 
+        return arikaim.put('/api/admin/currency/status',{ 
             uuid: uuid, 
             status: status 
-        };
-
-        return arikaim.put('/api/admin/currency/status',data,onSuccess,onError);      
+        },onSuccess,onError);      
     };
 }
 
 var currency = new CurrencyControlPanel();
-

@@ -1,7 +1,11 @@
-<div class="ui two column grid">
-    <div class="column">
+<div class="mt-4 flex flex-row items-start">
+    <div class="w-1/2">
         {{ component('currency::admin.currency.view') }}
     </div>
-    <div class="column" id="details_content">
+    <div class="ml-4 w-1/2" id="details_content">
     </div>
 </div>
+{{  component('system:admin.modal.confirm',{
+        id: 'confirm_delete'       
+    }) 
+}}
