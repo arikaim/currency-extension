@@ -12,8 +12,7 @@
     "admin-menu": {       
         "title": "Currency",
         "page-title": "Currency",
-        "svg_icon": "icons~billing",
-        "page-icon": "icons~billing",              
+        "svg_icon": "icons~billing",         
         "component": "currency::admin"        
     }
 }
